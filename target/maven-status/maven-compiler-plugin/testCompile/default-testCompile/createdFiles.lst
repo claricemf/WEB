@@ -1,0 +1,3 @@
+MyStepdefs.class
+pageObjects\TelaPrincipalPage.class
+steps\RunnerScripts.class
