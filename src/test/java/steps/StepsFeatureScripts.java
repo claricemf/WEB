@@ -44,7 +44,7 @@ public class StepsFeatureScripts {
     @And("Valido os dados dos dois primeiros registros")
     public void validoDadosDoisPrimeirosRegistros(){
         TelaResultadoConsultaPage telaResultadoConsultaPage = new TelaResultadoConsultaPage(driver);
-        telaResultadoConsultaPage.validoResultadoDoisPrimeirosRegistros();
+        telaResultadoConsultaPage.validoResultadoDoisPrimeirosRegistros(driver);
     }
 
     @And("Crio arquivo de dados com resultados da primeira pagina")
