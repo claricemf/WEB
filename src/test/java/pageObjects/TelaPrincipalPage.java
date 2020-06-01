@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TelaPrincipalPage {
@@ -29,13 +27,13 @@ public class TelaPrincipalPage {
     @FindBy(how = How.XPATH, using = "//*[@title='Marca']")
     private WebElement botaoMarca;
 
-    @FindBy(how = How.XPATH, using ="//*[@title='Marca']/following-sibling::div/div/input")
+    @FindBy(how = How.XPATH, using = "//*[@title='Marca']/following-sibling::div/div/input")
     private WebElement campoTextoAutocompleteMarca;
 
     @FindBy(how = How.XPATH, using = "//*[@title='Modelo']")
     private WebElement botaoModelo;
 
-    @FindBy(how = How.XPATH, using ="//*[@title='Modelo']/following-sibling::div/div/input")
+    @FindBy(how = How.XPATH, using = "//*[@title='Modelo']/following-sibling::div/div/input")
     private WebElement campoTextoAutocompleteModelo;
 
     @FindBy(how = How.LINK_TEXT, using = "alterar")
@@ -49,17 +47,16 @@ public class TelaPrincipalPage {
 
     private String URL_PAGINA_INICIAL_ICARROS = "https://www.icarros.com.br/principal/index.jsp";
 
-
-    public void acessarPaginaInicial (WebDriver driver){
+    public void acessarPaginaInicial(WebDriver driver) {
         driver.navigate().to(URL_PAGINA_INICIAL_ICARROS);
     }
 
-    public void desmarcarAnunciosNovos(){
+    public void desmarcarAnunciosNovos() {
         wait.until(ExpectedConditions.visibilityOf(campoCheckboxAnunciosNovos));
         campoCheckboxAnunciosNovos.click();
     }
 
-    public void selecionarMarca(String marca, WebDriver driver){
+    public void selecionarMarca(String marca, WebDriver driver) {
         botaoMarca.click();
 
         wait.until(ExpectedConditions.elementToBeClickable(campoTextoAutocompleteMarca));
@@ -68,32 +65,28 @@ public class TelaPrincipalPage {
         driver.findElement(By.xpath("//*[@title='Marca']/following::div/ul/li/a/span[text()='" + marca + "']")).click();
     }
 
-    public void selecionarModelo(String modelo, WebDriver driver){
-       wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(botaoModelo, "aria-disabled","true")));
+    public void selecionarModelo(String modelo, WebDriver driver) {
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(botaoModelo, "aria-disabled", "true")));
         botaoModelo.click();
         campoTextoAutocompleteModelo.click();
         campoTextoAutocompleteModelo.sendKeys(modelo);
         driver.findElement(By.xpath("//*[@title='Modelo']/following-sibling::div/ul/li/a/span[text()='" + modelo + "']")).click();
     }
 
-    public void selecionarAlterarLocalizacao(String localizacao){
+    public void selecionarAlterarLocalizacao(String localizacao) {
         wait.until(ExpectedConditions.visibilityOf(linkAlterar));
         linkAlterar.click();
-        if (localizacao.equals("TodoBrasil")){
+        if (localizacao.equals("TodoBrasil")) {
             selecionarPesquisarLocalizacaoEmTodoBrasil();
         }
     }
 
-    public void selecionarPesquisarLocalizacaoEmTodoBrasil(){
+    public void selecionarPesquisarLocalizacaoEmTodoBrasil() {
         wait.until(ExpectedConditions.visibilityOf(campoCheckRadioTodoOBrasil));
         campoCheckRadioTodoOBrasil.click();
     }
 
-    public void clicarBotaoBuscar(){
+    public void clicarBotaoBuscar() {
         botaoBuscar.click();
     }
-
-
-
-
 }
